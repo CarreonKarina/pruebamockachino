@@ -1,0 +1,136 @@
+<form class="form-group row form" id ="contactForm" [formGroup]="form" (ngSubmit)="submit()">
+
+    <table>
+        <tr>
+            <td ><div class="align-right"><label for="inputPaterno" class="custom-label">*Paterno</label></div></td>
+            <td><input type="text"  
+                class="form-control custom-input2" 
+                formControlName="apPaterno" 
+                id="inputPaterno" 
+                name="inputPaterno" 
+                #apPaterno
+                required  ngModel>
+            </td>    
+        </tr>
+        <tr>
+            <td><div class="align-right"><label for="inputMaterno" class="custom-label">Materno</label></div></td>
+            <td> <input type="text" class="form-control custom-input2" id="inputMaterno" formControlName="apMaterno" #apMaterno ngModel></td>
+        </tr>
+        <tr>
+            <td><div class="align-right"><label for="inputNombre" class=" custom-label">*Nombre</label></div></td>
+            <td><input type="text" class="form-control custom-input2" id="inputNombre" formControlName="nombre" #nombre ngModel ></td>
+        </tr>
+        <tr>
+            <td><div class="align-right"><label for="selectOpcionesSex" class=" custom-label">*Sexo</label></div></td>
+            <td><select class="custom-select" id="selectOpcionesSex" formControlName="sexo"  #sexo ngModel >
+                <option selected disabled value="">Seleccione un sexo</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Femenino">Femenino</option>
+                <option value="Neutro">Prefiero no indicar</option>
+            </select></td>
+        </tr>
+        <tr>
+            <td><div class="align-right"><label for="fechaNac" class="custom-label fechaNacLab">*Fecha Nac.</label></div></td>
+            <td><div class="flex-container"><input type="text" id="fechaNac" class="form-control custom-input2" formControlName="fechNac"  #fechNac ngModel >
+                <span id="passwordHelpInline" class="form-text">
+                    (dd/mm/aaaa)
+                </span></div>
+            </td>
+        </tr>
+        <tr>
+            <td><div class="align-right"><label for="selectOpcionesPais" class="col-sm-2  fechaNacLab">*Pais Nac.</label></div></td>
+            <td> <select class="custom-select" id="selectOpcionesPais" (change)="changeCountry()"  name="pais" formControlName="pais" #pais ngModel >
+                <option selected disabled value="">Seleccione un Pais</option>
+                <option *ngFor="let e of listarPaises" [value]="e['country_name']" [selected]="e==selected" [value]="e.country_name">{{e['country_name']}}</option>
+            </select></td>
+        </tr>
+        <tr>
+            <td><div class="align-right"><label for="selectOpcionesProv" class="col-sm-2  fechaNacLab">*Provincia Nac.</label></div></td>
+            <td><select class="custom-select" id="selectOpcionesProv" (change)="changeState()"   name="estado" formControlName="estado" #estado ngModel>
+                <option selected disabled value="">Seleccione una Provincia</option>
+                <option *ngFor="let edo of listarEstados" [value]="edo['state_name']" [selected]="edo==selected" [value]="edo.state_name">{{edo['state_name']}}</option>
+            </select></td>
+        </tr>
+        <tr>
+            <td><div class="align-right"><label for="selectOpcionesLoc" class="col-sm-2 col-form-label fechaNacLab">*Localidad Nac.</label></div></td>
+            <td><select class="custom-select" id="selectOpcionesLoc" formControlName="municipio" #municipio ngModel >
+                <option selected disabled value="">Seleccione una Localidad</option>
+                <option *ngFor="let mun of listarMunicipios" [value]="mun['city_name']" [selected]="mun==selected" [value]="mun.city_name">{{mun['city_name']}}</option>
+            </select>
+            </td>
+        </tr>
+        <tr>
+            <td><div class="align-right"><label for="inputPeso" class="col-form-label ">Peso</label></div></td>
+            <td><input type="number" id="inputPeso" class="form-control custom-input2" formControlName="peso" #peso ngModel></td>
+        </tr>
+        <tr>
+            <td><div class="align-right"><label for="inputEstatura" class="col-form-label">Estatura</label></div></td>
+            <td><input type="number" id="inputEstatura" class="form-control custom-input2" formControlName="estatura" #estatura ngModel></td>
+        </tr>
+        <tr>
+            <td><div class="align-right"><label for="selectGrupoS" class="col-sm-2 col-form-label fechaNacLab">Gpo. Sanguineo</label></div></td>
+            <td><select class="custom-select" id="selectGrupoS"  formControlName="gSanguineo" #gSanguineo ngModel>
+                <option selected disabled value="">Seleccione un Grupo Sanguineo</option>
+                <option value="A+">A+</option>
+                <option value="B+">B+</option>
+                <option value="AB+">AB+</option>
+                <option value="O+">O+</option>
+                <option value="A-">A-</option>
+                <option value="B-">B-</option>
+                <option value="AB">AB-</option>
+                <option value="0-">0-</option>
+            </select></td>
+        </tr>
+        <tr>
+            <td><div class="align-right"><label for="selectOpcionesNac" class="col-sm-2 col-form-label fechaNacLab">Nacionalidad</label></div></td>
+            <td><select class="custom-select" id="selectOpcionesNac" formControlName="nacionalidad" #nacionalidad ngModel>
+                <option selected disabled value="">Seleccione una Nacionalidad</option>
+                <option *ngFor="let nac of listaNacionalidad" [value]="nac['Nombre']" [selected]="nac==selected" [value]="nac.Nombre">{{nac['Nombre']}}</option>
+            </select>
+            </td>
+        </tr>
+        <tr>
+            <td><div class="align-right"><label for="selectEstadoCiv" class="col-sm-2 col-form-label fechaNacLab">Estado civil</label></div></td>
+            <td><select class="custom-select" id="selectEstadoCiv" formControlName="estCivil" #estCivil ngModel>
+                <option selected disabled value="">Seleccione un Estado Civil</option>
+                <option value="Soltero">Soltero</option>
+                <option value="Casado">Casado</option>
+                <option value="Vuido">Vuido</option>
+                <option value="Divorsiado">Divorsiado</option>
+                <option value="Concubinato">Concubinato</option>
+            </select></td>
+        </tr>
+
+        <tr>
+            <td><div class="align-right"><label for="inputLicencia" class="col-form-label">Número de Licencia</label></div></td>
+            <td><input type="text" id="inputLicencia" class="form-control custom-input2" formControlName="numLicencia" #numLicencia ngModel></td>
+        </tr>
+
+        <tr>
+            <td><div class="align-right"><label for="inputPasaporte" class="col-form-label">Num. Pasaporte</label></div></td>
+            <td><input type="text" id="inputPasaporte" class="form-control custom-input2" formControlName="numPasaporte" #numPasaporte ngModel></td>
+        </tr>
+
+        <tr>
+            <td><div class="align-right"><label for="inputEmail" class="col-sm-2 col-form-label fechaNacLab">Direccion E-mail</label></div></td>
+            <td> <input type="email" class="form-control custom-input2" id="inputEmail" formControlName="email" #email ngModel></td>
+        </tr>
+
+        <tr>
+            <td><div class="align-right"><label for="selectOpcionesSupervisor" class="col-sm-2 col-form-label fechaNacLab">Supervisor</label></div></td>
+            <td><select class="custom-select" id="selectOpcionesSupervisor" formControlName="supervisor" #supervisor ngModel>
+                <option selected disabled value="">Seleccione un Supervisor</option>
+                <option *ngFor="let sup of listarSupervisores" [value]="sup['id']" [selected]="sup==selected" [value]="sup.id">{{sup['nombre']}}</option>
+
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td> <button class="btn btn-success">Guardar</button></td>
+            
+        </tr>
+    </table>  
+</form>
+
